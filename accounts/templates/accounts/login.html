@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+	<div class="container-fluid">
+		{% include 'notes/nav.html' %}
+	<h1 id="acc-header" align="center" style="margin-top: 20px;">login</h1>
+		<form action="{% url 'accounts:login' %}" method="POST" class="form-group" align="center">
+		{% csrf_token %}
+		{% for field in form %}
+    	<div class="field">
+        	<p>{{ field.label_tag }} {{ field }}</p>
+        	<p>{% if field.help_text %}</p>
+        	<p class="help">{{ field.help_text|safe}}</p>
+        	{% endif %}
+    	</div>
+		{% endfor %}
+		{% if request.GET.next %}
+			<input type="hidden" name="next" value="{{request.GET.next}}">
+		{% endif %}
+		<input type="submit" value='login' class="btn btn-primary"> or 
+		<a href="{% url 'accounts:signup' %}" class="btn btn-primary">sign up</a>
+	</form>
+</div>
+	</div>
+{% endblock %}

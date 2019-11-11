@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+	<div class="container">
+		{% include 'notes/nav.html' %}
+<div class="container">
+		<form action="{% url 'notes:save' %}" method="POST" class="form-group">
+      {% csrf_token %}
+			{% for field in form %}
+        <div class="field">
+          {% if field.type == 'file' %}
+          <div class="custom-file">
+          {{field}}  
+          </div>
+          {% else %}
+          {{field}}
+          {% endif %}
+          
+        </div>
+        {% endfor %}
+			<input type="submit" value="save" class="btn btn-success">
+		</form>
+</div>
+  {% include 'notes/notes.html' %}
+	</div>
+{% endblock %}

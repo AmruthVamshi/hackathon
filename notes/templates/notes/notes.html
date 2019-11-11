@@ -1,0 +1,19 @@
+
+<div class="container notes-section">
+    <div class="container-fluid">
+        <div class="row">
+      		{% for note in notes %}
+      		<div class="card col-3" style="margin:10px 45px 10px 45px;">
+      			{% if note.thumb != 'default.png' %}
+  				<img class="card-img-top" src="{{note.thumb}}" alt="Card image cap">
+  				{% endif %}
+ 	 			<div class="card-body" >
+    				<h4 class="card-title">{{note.title}}</h4>
+    				<p class="card-text">{{note.body}}</p>
+   					<a href="{% url 'notes:delete' post_pk=note.pk %}" class="btn btn-danger">delete</a>
+				</div>
+ 			</div>
+        	{% endfor %}
+        </div>
+    </div>
+</div>   
